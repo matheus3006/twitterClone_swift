@@ -14,6 +14,7 @@ struct twitterCloneApp: App {
             NavigationView{
                 
                 ContentView()
+
                 
             }
         }
