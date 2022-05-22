@@ -16,30 +16,26 @@ struct LogInView: View {
         //Parant container
         VStack{
             
-            //Header View
-            VStack(alignment: .leading){
-                //It creates space custon clip shape.
-                HStack(){Spacer()}
-                
-                Text("Hello")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                
-                Text("Welcome Back")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-            }
-            .frame(height: 260)
-            .padding(.leading)
-            .background(Color(.systemBlue))
-            .foregroundColor(.white)
-            .clipShape(RoundedShape(corners: [.bottomRight]))
+            //Header view
+            AuthHeaderView(
+                title1:"Hello",
+                title2: "Welcome Back"
+            )
             
             
             VStack(spacing: 40){
-                TextField("Email", text: $email)
+                CustomInputFields(
+                    imageName: "envelope",
+                    placeHolderText: "Email",
+                    text: $email
+                )
                 
-                TextField("Password", text: $password)
+                CustomInputFields(
+                     imageName: "lock",
+                     placeHolderText: "Password",
+                     text: $password
+                )
+            
                 
             }
             .padding(.horizontal, 32)
