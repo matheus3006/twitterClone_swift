@@ -16,12 +16,24 @@ class AuthModel : ObservableObject {
     init(){
         self.userSession = Auth.auth().currentUser
         
-        print("DEBUG: User Session is: \(self.userSession)")
+        print("DEBUG: User Session is: \(self.userSession?.uid)")
     }
     
     
     func logIn(withEmail email: String, password: String){
-        print("DEBUG: Log in with email: \(email)")
+        Auth.auth().signIn(withEmail: email, password: password) { result, err in
+            if let error = err {
+                print("DEBUG: Failed to sign in user account")
+                return
+            }
+            
+            guard let user = result?.user else {return}
+            self.userSession = user
+            
+            print("DEBUG: Log in with email: \(email)")
+        }
+        
+      
     }
     
     func register(withEmail email: String, password: String, fullName:String, userName: String){

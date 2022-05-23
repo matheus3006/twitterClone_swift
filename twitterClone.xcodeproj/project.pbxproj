@@ -36,6 +36,7 @@
 		577BB32D283472CF00422011 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BB32C283472CF00422011 /* SideMenuView.swift */; };
 		577BB32F283472F800422011 /* SideMenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BB32E283472F800422011 /* SideMenuRowView.swift */; };
 		577BB3322834736600422011 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BB3312834736600422011 /* SideMenuViewModel.swift */; };
+		5793CB05283BB56F0064F3EE /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793CB04283BB56F0064F3EE /* AuthModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		577BB32C283472CF00422011 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		577BB32E283472F800422011 /* SideMenuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRowView.swift; sourceTree = "<group>"; };
 		577BB3312834736600422011 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		5793CB04283BB56F0064F3EE /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 		576763EB283A775600EFA16B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5793CB04283BB56F0064F3EE /* AuthModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				574CC084283ABFF600772462 /* CustomInputFields.swift in Sources */,
 				577BB32828346AF700422011 /* UserRowView.swift in Sources */,
 				572898D628314D8500A2C612 /* twitterCloneApp.swift in Sources */,
+				5793CB05283BB56F0064F3EE /* AuthModel.swift in Sources */,
 				572898F528317D8E00A2C612 /* MainTabView.swift in Sources */,
 				57422D8A2835B1F4002DAC40 /* UserStatsView.swift in Sources */,
 			);

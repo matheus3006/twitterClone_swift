@@ -10,7 +10,7 @@ import SwiftUI
 struct LogInView: View {
     @State private var email = ""
     @State private var password = ""
-    
+    @EnvironmentObject var authModel: AuthModel
     
     var body: some View {
         //Parant container
@@ -58,7 +58,7 @@ struct LogInView: View {
             }
             
             Button {
-                print("Sign in here...")
+                authModel.logIn(withEmail: email, password: password)
             } label: {
                 Text("Sign In")
                     .font(.headline)
@@ -80,6 +80,7 @@ struct LogInView: View {
             NavigationLink {
                 RegistrationView()
                     .navigationBarHidden(true)
+                
             } label: {
                 HStack{
                     Text("Don't have an account ")
