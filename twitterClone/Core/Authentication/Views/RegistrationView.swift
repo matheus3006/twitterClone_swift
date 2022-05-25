@@ -19,6 +19,8 @@ struct RegistrationView: View {
     var body: some View {
         VStack{
             
+            NavigationLink(destination: ProfilePhotoSelectorView(), isActive: $authModel.didAuthenticateUser, label: { })
+            
             //Header View
             AuthHeaderView(
                 title1:"Get Started",
