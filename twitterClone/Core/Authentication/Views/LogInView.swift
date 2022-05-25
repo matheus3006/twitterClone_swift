@@ -60,7 +60,7 @@ struct LogInView: View {
                     
                 }
             }
-            
+                        
             Button {
                 authModel.logIn(withEmail: email, password: password)
             } label: {
