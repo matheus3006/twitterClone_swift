@@ -1,9 +1,4 @@
-//
-//  AuthModel.swift
-//  twitterClone
-//
-//  Created by Matheus Souza on 5/23/22.
-//
+
 
 import SwiftUI
 import Firebase
@@ -11,7 +6,7 @@ import Firebase
 class AuthModel : ObservableObject {
     @Published var userSession : FirebaseAuth.User?
     @Published var didAuthenticateUser = false
-    
+    private var tempUserSession : FirebaseAuth.User?
     
     
     init(){
@@ -27,14 +22,14 @@ class AuthModel : ObservableObject {
                 print("DEBUG: Failed to sign in user account")
                 return
             }
-            
+             
             guard let user = result?.user else {return}
             self.userSession = user
             
             print("DEBUG: Log in with email: \(email)")
         }
         
-      
+        
     }
     
     func register(withEmail email: String, password: String, fullName:String, userName: String){
@@ -45,7 +40,7 @@ class AuthModel : ObservableObject {
             }
             
             guard let user = result?.user else {return}
-            
+            self.tempUserSession = user
             
             
             let data = [
@@ -66,9 +61,22 @@ class AuthModel : ObservableObject {
         
     }
     
+    
     func singOut(){
         userSession = nil
         try? Auth.auth().signOut()
     }
+    
+    func uploadProfileImage( image:UIImage){
+        guard let uid=tempUserSession?.uid else{return}
+        ImageUploader.uploadImage(image:image){ profileImageUrl in
+            Firestore.firestore().collection("users")
+                 .document(uid)
+                 .updateData(["profileImageUrl":profileImageUrl]){ _ in
+                     self.userSession=self.tempUserSession
+                 }
+        }
+    }
+    
     
 }
