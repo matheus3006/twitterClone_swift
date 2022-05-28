@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     @State private var selectedFilter: TweetFilterViewModel = .tweets
     @Namespace var animation
     @Environment(\.presentationMode) var mode
+    private let user:User
+    
+    init(user:User){
+        self.user = user
+    }
+    
     
     var body: some View {
         VStack(alignment: .leading){
@@ -23,16 +30,21 @@ struct ProfileView: View {
             
             Spacer()
         }
-        
+        .navigationBarHidden(true)
         
         
         
     }
 }
- 
+
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user:User(id:NSUUID().uuidString,
+                              username:"batman",
+                              fullname:"Bruce Wayne",
+                              profileImageUrl: "",
+                              email:"batman@gmail.com")
+        )
     }
 }
 
@@ -55,13 +67,17 @@ extension ProfileView {
                             .resizable()
                             .frame(width: 20, height: 16)
                             .foregroundColor(.white)
-                            .offset(x: 16, y: 12)
+                            .offset(x: 16, y: -4)
                         
                     }
-
-                    Circle()
-                        .frame(width: 72, height: 72)
-                    .offset(x: 16, y: 24)
+                    
+                    //ProfileImage
+                    KFImage(URL(string:user.profileImageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width:72,height:72)
+                        .offset(x:16,y:24)
                 }
             }
             .frame(height: 96)
@@ -70,7 +86,7 @@ extension ProfileView {
             
         }
     }
-        
+    
     
 }
 
@@ -96,7 +112,7 @@ extension ProfileView {
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
                 
             }
-
+            
         }
         .padding(.trailing)
     }
@@ -108,15 +124,16 @@ extension ProfileView{
     var userInfoDetails : some View {
         VStack(alignment: .leading, spacing: 4){
             HStack {
-                Text("Matheus Souza")
+                Text(user.fullname)
+                    .font(.title2).bold()
                 
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(Color(.systemBlue))
             }
             
-            Text("@MathSouza")
+            Text("@\(user.username)")
                 .font(.subheadline)
-                .foregroundStyle(.gray)
+                .foregroundColor(.gray)
             
             Text("Checking the message")
                 .font(.subheadline)
@@ -130,7 +147,7 @@ extension ProfileView{
                     
                 }
                 
-                                    
+                
                 HStack{
                     Image(systemName: "link")
                     
@@ -158,7 +175,7 @@ extension ProfileView {
                 VStack{
                     Text(item.title)
                         .font(.subheadline)
-                        //Applies .semibold to the one that is selected
+                    //Applies .semibold to the one that is selected
                         .fontWeight(selectedFilter == item ? .semibold : .regular)
                         .foregroundColor(selectedFilter == item ? .black : .gray)
                     
