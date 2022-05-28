@@ -2,17 +2,20 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 
 class AuthModel : ObservableObject {
     @Published var userSession : FirebaseAuth.User?
     @Published var didAuthenticateUser = false
+    @Published var currentUser: User?
     private var tempUserSession : FirebaseAuth.User?
     
+    private let service = UserService()
     
     init(){
         self.userSession = Auth.auth().currentUser
         
-        print("DEBUG: User Session is: \(self.userSession?.uid)")
+        self.fetchUser()
     }
     
     
@@ -25,8 +28,8 @@ class AuthModel : ObservableObject {
              
             guard let user = result?.user else {return}
             self.userSession = user
+            self.fetchUser()
             
-            print("DEBUG: Log in with email: \(email)")
         }
         
         
@@ -64,19 +67,31 @@ class AuthModel : ObservableObject {
     
     func singOut(){
         userSession = nil
+        currentUser = nil
+        tempUserSession = nil
         try? Auth.auth().signOut()
+        
     }
     
-    func uploadProfileImage( image:UIImage){
+    
+    func uploadProfileImage(image:UIImage){
         guard let uid=tempUserSession?.uid else{return}
         ImageUploader.uploadImage(image:image){ profileImageUrl in
             Firestore.firestore().collection("users")
-                 .document(uid)
-                 .updateData(["profileImageUrl":profileImageUrl]){ _ in
-                     self.userSession=self.tempUserSession
-                 }
+                .document(uid)
+                .updateData(["profileImageUrl":profileImageUrl]) { _ in
+                    self.userSession = self.tempUserSession
+                    self.fetchUser()
+                }
+        
         }
+    
     }
     
-    
+    func fetchUser(){
+        guard let uid = self.userSession?.uid else{return}
+        service.fetchUser(withUid: uid) { user in
+            self.currentUser = user
+        }
+    }
 }
