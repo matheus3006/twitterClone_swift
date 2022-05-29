@@ -6,40 +6,50 @@
 //
 
 import SwiftUI
+import Kingfisher
+
 
 struct TweetRowView: View {
+    let tweet: Tweet
+    
+    
     var body: some View {
         VStack(alignment: .leading){
             // profile image + user info  + tweet
-            HStack(alignment: .top, spacing: 12) {
-                Circle()
-                    .frame(width: 56, height: 56)
-                    .foregroundColor(Color(.systemBlue))
-            
-                //User info & tweet caption
-                VStack (alignment: .leading, spacing: 4){
-                    //User info
-                    HStack{
-                        Text("Seu Jorge")
-                            .font(.subheadline).bold()
+            if let user = tweet.user {
+                HStack(alignment: .top, spacing: 12) {
+                    KFImage(URL(string:user.profileImageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width:56,height:56)
+                        .clipShape(Circle())
                         
-                        Text("@minha_morena")
-                            .foregroundColor(.gray)
-                            .font(.caption)
+                
+                    //User info & tweet caption
+                    VStack (alignment: .leading, spacing: 4){
+                        //User info
+                        HStack{
+                            Text(user.fullname)
+                                .font(.subheadline).bold()
+                            
+                            Text("@\(user.username)")
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                            
+                            Text("2w")
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                            
+                        }
                         
-                        Text("2w")
-                            .foregroundColor(.gray)
-                            .font(.caption)
+                        //Tweet caption
+                        Text(tweet.caption)
+                            .font(.subheadline)
+                            .multilineTextAlignment(.leading)
                         
                     }
-                    
-                    //Tweet caption
-                    Text("I believe this could work")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.leading)
-                    
+                            
                 }
-                        
             }
             
             // action button
@@ -91,8 +101,8 @@ struct TweetRowView: View {
     }
 }
 
-struct TweetRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        TweetRowView()
-    }
-}
+//struct TweetRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TweetRowView()
+//    }
+//}
