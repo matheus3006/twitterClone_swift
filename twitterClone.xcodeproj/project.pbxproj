@@ -21,9 +21,14 @@
 		572898FE28317FE900A2C612 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572898FD28317FE900A2C612 /* NotificationView.swift */; };
 		572899002831800F00A2C612 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572898FF2831800F00A2C612 /* MessagesView.swift */; };
 		57422D8A2835B1F4002DAC40 /* UserStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57422D892835B1F4002DAC40 /* UserStatsView.swift */; };
+		574ABCA7284448D600FA303A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574ABCA6284448D600FA303A /* ProfileViewModel.swift */; };
 		574CC084283ABFF600772462 /* CustomInputFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC083283ABFF600772462 /* CustomInputFields.swift */; };
 		574CC087283AC60600772462 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC086283AC60600772462 /* AuthHeaderView.swift */; };
 		574CC08A283B049500772462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 574CC089283B049500772462 /* GoogleService-Info.plist */; };
+		5758F30128425FC200636963 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758F30028425FC200636963 /* TweetService.swift */; };
+		5758F3032842617200636963 /* Up;padTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758F3022842617200636963 /* Up;padTweetViewModel.swift */; };
+		5758F3052842693E00636963 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758F3042842693E00636963 /* FeedViewModel.swift */; };
+		5758F30728426A8000636963 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758F30628426A8000636963 /* Tweet.swift */; };
 		5761362F2841A1A4004315DE /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5761362E2841A1A4004315DE /* ExploreViewModel.swift */; };
 		576136332841A831004315DE /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576136322841A831004315DE /* SearchBar.swift */; };
 		576763E5283825CF00EFA16B /* NewTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576763E4283825CF00EFA16B /* NewTweetView.swift */; };
@@ -59,9 +64,14 @@
 		572898FD28317FE900A2C612 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		572898FF2831800F00A2C612 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		57422D892835B1F4002DAC40 /* UserStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatsView.swift; sourceTree = "<group>"; };
+		574ABCA6284448D600FA303A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		574CC083283ABFF600772462 /* CustomInputFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputFields.swift; sourceTree = "<group>"; };
 		574CC086283AC60600772462 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		574CC089283B049500772462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5758F30028425FC200636963 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
+		5758F3022842617200636963 /* Up;padTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Up;padTweetViewModel.swift"; sourceTree = "<group>"; };
+		5758F3042842693E00636963 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		5758F30628426A8000636963 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		5761362E2841A1A4004315DE /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		576136322841A831004315DE /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		576763E4283825CF00EFA16B /* NewTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetView.swift; sourceTree = "<group>"; };
@@ -152,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				57F4DAC5284104730078AA16 /* User.swift */,
+				5758F30628426A8000636963 /* Tweet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +172,7 @@
 			children = (
 				579DF181284017CD008E04D0 /* ImageUploader.swift */,
 				57F4DAC32841027C0078AA16 /* UserService.swift */,
+				5758F30028425FC200636963 /* TweetService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -208,6 +220,7 @@
 		572898EC2831731000A2C612 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5758F3042842693E00636963 /* FeedViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -298,6 +311,7 @@
 		575981E3283722C700AED4B6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5758F3022842617200636963 /* Up;padTweetViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -341,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				577BB31F2832EC8400422011 /* TweetFilterViewModel.swift */,
+				574ABCA6284448D600FA303A /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -499,6 +514,8 @@
 				57F4DAC42841027C0078AA16 /* UserService.swift in Sources */,
 				577BB31E2831C78D00422011 /* ProfileView.swift in Sources */,
 				572898D828314D8500A2C612 /* ContentView.swift in Sources */,
+				5758F30728426A8000636963 /* Tweet.swift in Sources */,
+				5758F3052842693E00636963 /* FeedViewModel.swift in Sources */,
 				577BB32F283472F800422011 /* SideMenuRowView.swift in Sources */,
 				579DF182284017CD008E04D0 /* ImageUploader.swift in Sources */,
 				572898F2283174A000A2C612 /* TweetRowView.swift in Sources */,
@@ -509,6 +526,7 @@
 				5761362F2841A1A4004315DE /* ExploreViewModel.swift in Sources */,
 				577BB3202832EC8400422011 /* TweetFilterViewModel.swift in Sources */,
 				577BB32D283472CF00422011 /* SideMenuView.swift in Sources */,
+				5758F30128425FC200636963 /* TweetService.swift in Sources */,
 				572898FE28317FE900A2C612 /* NotificationView.swift in Sources */,
 				572898EF2831733000A2C612 /* FeedView.swift in Sources */,
 				576136332841A831004315DE /* SearchBar.swift in Sources */,
@@ -524,6 +542,8 @@
 				5793CB05283BB56F0064F3EE /* AuthModel.swift in Sources */,
 				572898F528317D8E00A2C612 /* MainTabView.swift in Sources */,
 				57422D8A2835B1F4002DAC40 /* UserStatsView.swift in Sources */,
+				5758F3032842617200636963 /* Up;padTweetViewModel.swift in Sources */,
+				574ABCA7284448D600FA303A /* ProfileViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
