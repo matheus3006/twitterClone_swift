@@ -13,7 +13,7 @@ struct ProfileView: View {
     @ObservedObject var viewModel : ProfileViewModel
     @Namespace var animation
     @Environment(\.presentationMode) var mode
-
+    
     
     init(user:User){
         self.viewModel=ProfileViewModel(user:user)
@@ -106,7 +106,7 @@ extension ProfileView {
             Button {
                 //Here goes the code
             } label: {
-                Text("Edit Profile")
+                Text(viewModel.actionButtonTitle)
                     .font(.subheadline).bold()
                     .frame(width: 120, height: 32)
                     .foregroundColor(.black)
@@ -209,7 +209,7 @@ extension ProfileView {
     var tweetView : some View {
         ScrollView{
             LazyVStack{
-                ForEach( viewModel.tweets){ tweet in
+                ForEach( viewModel.tweets(forFilter: self.selectedFilter)){ tweet in
                     TweetRowView(tweet: tweet)
                         .padding()
                 }
