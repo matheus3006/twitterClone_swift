@@ -7,6 +7,7 @@
 
 import Firebase
 
+//MARK: - Upload & fetch tweets
 struct TweetService {
     func uploadTweet(caption: String, completion: @escaping (Bool) -> Void){
         guard let uid = Auth.auth().currentUser?.uid else{return}
@@ -58,27 +59,62 @@ struct TweetService {
         
     }
     
+    func fetchLikedTweets(forUid uid: String, completion:@escaping([Tweet]) -> Void) {
+        var tweets=[Tweet]()
+        
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("user-likes")
+            .getDocuments { snapshot, _ in
+                guard let documents=snapshot?.documents else{return}
+                
+                
+                documents.forEach { doc in
+                    let tweetID = doc.documentID
+                    
+                    Firestore.firestore().collection("tweets")
+                        .document(tweetID)
+                        .getDocument { snapshot, _ in
+                            guard let tweet = try?snapshot?.data(as: Tweet.self) else {return}
+                            
+                            tweets.append(tweet)
+                            completion(tweets)
+                            
+                        }
+                }
+                
+            }
+        
+        
+    }
+    
+}
+
+//MARK: - Likes
+
+extension TweetService {
     func likeTweet(_ tweet: Tweet, completion: @escaping(Bool) -> Void){
         guard let uid = Auth.auth().currentUser?.uid else{return}
         guard let tweetId = tweet.id else {return}
-
+        
         let userLikesRef = Firestore.firestore()
-                .collection("users")
-                .document(uid)
-                .collection("user-likes")
-
+            .collection("users")
+            .document(uid)
+            .collection("user-likes")
+        
         Firestore.firestore().collection("tweets").document(tweetId)
             .updateData(["likes":tweet.likes + 1]) { _ in
                 userLikesRef.document(tweetId).setData([:]){ _ in
-                completion(true)
+                    completion(true)
                     
-
+                    
                 }
                 
                 
             }
-
-
+        
+        
     }
     
     func unlikeTweet(tweet:Tweet,completion:@escaping()->Void){
@@ -93,7 +129,7 @@ struct TweetService {
                 userLikesRef.document(tweetId).delete{ _ in
                     completion()
                 }
-
+                
             }
         
     }
@@ -112,9 +148,6 @@ struct TweetService {
                 
                 completion(snapshot.exists)
             }
-                                                           
+        
     }
-    
-    
-    
 }
