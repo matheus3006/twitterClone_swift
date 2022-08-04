@@ -1,9 +1,3 @@
-//
-//  TextArea.swift
-//  twitterClone
-//
-//  Created by Matheus Souza on 5/20/22.
-//
 
 import SwiftUI
 
