@@ -1,9 +1,3 @@
-//
-//  CustomInputFields.swift
-//  twitterClone
-//
-//  Created by Matheus Souza on 5/22/22.
-//
 
 import SwiftUI
 
